@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Group Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="entry-screen">
+    <h2>Enter Your Name to Join</h2>
+    <input id="nameInput" type="text" placeholder="Your name" />
+    <button onclick="enterChat()">Join Chat</button>
+  </div>
+
+  <div id="chat-screen" style="display:none">
+    <header class="top-bar">
+      <span id="greeting">Welcome!</span>
+      <div class="online-users-container">
+        <span id="online-count" onclick="toggleDropdown()">0 online ⬇</span>
+        <ul id="dropdown-users" class="dropdown hidden"></ul>
+      </div>
+      <button onclick="toggleTheme()" id="theme-toggle">🌙</button>
+    </header>
+
+    <div class="chat-container">
+      <main class="chat-box-wrapper">
+        <div id="chat-box" class="chat-box"></div>
+        <div class="input-area">
+          <input id="msgInput" type="text" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMessage()" />
+          <button onclick="sendMessage()">Send</button>
+          <button onclick="clearChat()">🗑️</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
